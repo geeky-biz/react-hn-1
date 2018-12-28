@@ -64,13 +64,28 @@
       console.log('service worker is not supported');
     }
   </script>
-  <!-- Google Analytics -->
-  <script>
-  window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
-  ga('create', 'UA-79730498-1', 'auto');
-  ga('send', 'pageview');
-  </script>
-  <script async src='https://www.google-analytics.com/analytics.js'></script>
-  <!-- End Google Analytics -->  
+<script>
+(function(){
+  window.webmonTimingObject = 'wto';
+  if (!('wto' in window)){
+    window.wto = function(){
+    window.wto.q.push([(new Date()).getTime(), arguments]);
+    };
+    window.wto.q = [];
+  }
+  window.wto.l = (new Date()).getTime();
+  window.wto.siteId = 'S4P1GGAJDAU39COZ';
+  var script   = document.createElement('script');
+  script.src   = "https://www.tezify.com/speed/beacon_spa.js";
+  script.async = true;
+  var firstScript = document.getElementsByTagName('script')[0];
+  firstScript.parentNode.insertBefore(script, firstScript);
+})();
+wto('wtoPageVisit');
+function __wto_spa_pathFunc()
+{
+	return location.pathname + location.hash.substring(0,location.hash.search("\\?"))
+}
+</script>
   </body>
 </html>
